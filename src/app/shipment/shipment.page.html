@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Shipment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <form [formGroup]="shipmentForm" (ngSubmit)="submit()">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Name *</ion-label>
+          <ion-input autocapitalize inputmode="text" formControlName="name" placeholder="Enter Name"></ion-input>
+        </ion-item>
+        <div *ngFor="let error of errorMessages.name">
+          <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+          </div>
+          <ion-item>
+            <ion-label position="floating">Shipment Address *</ion-label>
+            <ion-input autocapitalize inputmode="text" formControlName="address" placeholder="Enter Address"></ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.address">
+            <ng-container *ngIf="name.hasError(error.type) && (address.dirty || address.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+            </div>
+        </ion-list>
+        </form>
+      </div>`
+  
+      <div>
+<ion-card *ngFor="let p of cart">
+  <ion-card-content>
+    <ion-avatar slot="start">
+      <ion-img [src]="p.imageUrl"></ion-img>
+    </ion-avatar>
+    <b>{{ p.productName }}</b>
+    <ion-button color="medium" fill="clear" (click)="decreaseCartItem(p)">
+      <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
+    </ion-button>
+    {{ p.quantity }}
+    <ion-button color="medium" fill="clear" (click)="increaseCartItem(p)">
+      <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+    </ion-button>
+    {{ p.quantity * p.price | currency:'USD' }}
+
+  </ion-card-content>
+</ion-card>
+  <ion-list>
+  <ion-item>
+  Total Amount: {{ getTotal() | currency:'USD' }}
+  </ion-item>
+</ion-list>
+</div>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+   <ion-button fill="outline" size="large" routerLink="/products">Cancel</ion-button>
+   <ion-button fill="outline" size="large" [disabled]="!shipmentForm.valid" type="submit" (click)="checkout()">Buy</ion-button>
+  </ion-toolbar>
+  </ion-footer>

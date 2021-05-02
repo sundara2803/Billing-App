@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Sales Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card>
+  <ion-card-content>
+<h2>{{name}}</h2>
+<h2>{{address}}</h2>
+<h2>{{noOfProducts}}products</h3>
+<h2>{{totalPrice|currency}}</h2>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>
+<ion-footer>
+<ion-toolbar>
+ <ion-button fill="outline" expand="block" (click)="addSales()"><ion-icon slot="start" name="cart-outline"></ion-icon>Add Sales</ion-button>
+</ion-toolbar>
+</ion-footer>

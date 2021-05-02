@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Chainsys products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let product of products">
+    <ion-card-content>
+      <ion-avatar slot="start">
+        <ion-img [src]="product.imageUrl"></ion-img>
+      </ion-avatar>
+      <ion-label>
+      <h2>{{product.productName}}</h2>  
+      </ion-label>
+      <ion-label>
+        {{product.price|currency}}
+      </ion-label>
+      <ion-label>
+   
+        <span> {{product.quantity}}</span>
+        <ion-button fill="clear" (click)="addToCart(product)">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+   <ion-button fill="outline" size="large" routerLink="/home">Cancel</ion-button>
+   <ion-button fill="outline" size="large" (click)="buy()">Buy</ion-button>
+  </ion-toolbar>
+  </ion-footer>
